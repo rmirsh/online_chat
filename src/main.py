@@ -1,6 +1,6 @@
 import uvicorn
 
-from core.config import settings
+from src.core import settings
 
 from api import router as api_router
 from create_fastapi_app import create_app

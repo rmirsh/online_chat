@@ -1,9 +1,9 @@
 services:
 
   pg:
-    image: postgres
+    image: postgres:16-alpine
     environment:
-      POSTGRES_DB: shop
+      POSTGRES_DB: chat
       POSTGRES_USER: user
       POSTGRES_PASSWORD: password
     ports:

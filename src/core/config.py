@@ -1,3 +1,5 @@
+from functools import cache
+
 from pydantic import BaseModel
 from pydantic import PostgresDsn
 from pydantic_settings import (
@@ -39,7 +41,8 @@ class DatabaseConfig(BaseModel):
 
 class Settings(BaseSettings):
     model_config = SettingsConfigDict(
-        env_file=(".env.template", ".env"),
+        env_file=".env",
+        env_file_encoding="utf-8",
         case_sensitive=False,
         env_nested_delimiter="__",
         env_prefix="APP_CONFIG__",
@@ -49,4 +52,9 @@ class Settings(BaseSettings):
     db: DatabaseConfig
 
 
-settings = Settings()
+@cache
+def get_settings():
+    return Settings(_env_file="src/.env")
+
+
+settings = get_settings()

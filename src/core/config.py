@@ -54,7 +54,7 @@ class Settings(BaseSettings):
 
 @cache
 def get_settings():
-    return Settings(_env_file="src/.env")
+    return Settings()
 
 
 settings = get_settings()
